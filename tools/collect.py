@@ -13,11 +13,12 @@ sys.setdefaultencoding('utf8')
 usage="usage: %prog DIRECTORY [options]"
 parse = OptionParser(usage=usage)
 #parse.add_option("-p", "--path", default="", help="题库目录", action="store", type="string", dest="path")
-parse.add_option("-t", "--type", default="", help="题目类型，多个类型之间用英文逗号分割", action="store", type="string", dest="type")
-parse.add_option("-q", "--question", default="", help="题干关键字，多个关键字之间用英文逗号分割", action="store", type="string", dest="question")
-parse.add_option("-o", "--option", default="", help="选择项关键字，多个关键字之间用英文逗号分割", action="store", type="string", dest="option")
-parse.add_option("-a", "--answer", default="", help="答案解释关键字，多个关键字之间用英文逗号分割", action="store", type="string", dest="answer")
-parse.add_option("-s", "--source", default="", help="出处关键字，多个关键字之间用英文逗号分割", action="store", type="string", dest="source")
+parse.add_option("-t", "--type", default="", help="题目类型, 1-5, 多个类型之间用英文逗号分割", action="store", type="string", dest="type")
+parse.add_option("-q", "--question", default="", help="题干关键字, 比如:死锁, 多个关键字之间用英文逗号分割", action="store", type="string", dest="question")
+parse.add_option("-o", "--option", default="", help="选择项关键字, 比如:UNIX, 多个关键字之间用英文逗号分割", action="store", type="string", dest="option")
+parse.add_option("-a", "--answer", default="", help="答案解释关键字, 比如:逻辑结构, 多个关键字之间用英文逗号分割", action="store", type="string", dest="answer")
+parse.add_option("-s", "--source", default="", help="出处关键字, 比如:清华, 多个关键字之间用英文逗号分割", action="store", type="string", dest="source")
+parse.add_option("-k", "--knowledge", default="", help="知识点关键字, 比如:同步互斥, 多个关键字之间用英文逗号分割", action="store", type="string", dest="knowledge")
 (options, args)=parse.parse_args()
 
 
@@ -33,7 +34,9 @@ pa2=options.question.split(',')
 pa3=options.option.split(',')
 pa4=options.answer.split(',')
 pa5=options.source.split(',')
-print pa1,pa2,pa3,pa4,pa5
+pa6=options.knowledge.split(',')
+
+print pa1,pa2,pa3,pa4,pa5,pa6
 try:
     for parent,dirnames,filenames in os.walk(sys.argv[1]):
         for filename in filenames:
@@ -60,7 +63,7 @@ try:
     
                    elif re.search('^(> 知识点：)', line)!=None:
                         kn=line.strip('\n')
-                        #print kn
+                        #print "知识点 是 ", kn
                    elif re.search('^(> )', line)!=None:
                         js+=line.strip('\n')
                    elif re.search('^(\d\n)$', line)!=None:
@@ -112,7 +115,14 @@ try:
                         result=1
                   if flag==0:
                     continue
-
+               if options.knowledge!='':
+                  flag=0
+                  for j in range(len(pa6)):
+                    if kn.find(pa6[j])!=-1:
+                        flag=1
+                        result=1
+                  if flag==0:
+                    continue
                if result==1:
                   count=count+1
                   print filename
