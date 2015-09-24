@@ -19,6 +19,7 @@ parse.add_option("-o", "--option", default="", help="选择项关键字, 比如:
 parse.add_option("-a", "--answer", default="", help="答案解释关键字, 比如:逻辑结构, 多个关键字之间用英文逗号分割", action="store", type="string", dest="answer")
 parse.add_option("-s", "--source", default="", help="出处关键字, 比如:清华, 多个关键字之间用英文逗号分割", action="store", type="string", dest="source")
 parse.add_option("-k", "--knowledge", default="", help="知识点关键字, 比如:同步互斥, 多个关键字之间用英文逗号分割", action="store", type="string", dest="knowledge")
+parse.add_option("-d", "--difficulty", default="", help="难度(1-5), 多个之间用英文逗号分割", action="store", type="string", dest="difficulty")
 (options, args)=parse.parse_args()
 
 
@@ -35,12 +36,12 @@ pa3=options.option.split(',')
 pa4=options.answer.split(',')
 pa5=options.source.split(',')
 pa6=options.knowledge.split(',')
-
-print pa1,pa2,pa3,pa4,pa5,pa6
+pa7=options.difficulty.split(',')
+print pa1,pa2,pa3,pa4,pa5,pa6,pa7
 try:
     for parent,dirnames,filenames in os.walk(sys.argv[1]):
         for filename in filenames:
-            if filename.find(".md")==-1 or filename=='examples.md' or filename.find(".md~")!=-1:
+            if re.match('^(\d+)(.md)$', filename)==None:
                continue
             else:
                i=""
@@ -49,6 +50,7 @@ try:
                cc=""
                js=""
                kn=""
+               nd=""
                result=1
                fr=open(sys.argv[1]+'/'+filename, 'rb')
    
@@ -64,6 +66,8 @@ try:
                    elif re.search('^(> 知识点：)', line)!=None:
                         kn=line.strip('\n')
                         #print "知识点 是 ", kn
+                   elif re.search('^(> 难度：)', line)!=None:
+                        nd=line.strip('\n')
                    elif re.search('^(> )', line)!=None:
                         js+=line.strip('\n')
                    elif re.search('^(\d\n)$', line)!=None:
@@ -123,6 +127,15 @@ try:
                         result=1
                   if flag==0:
                     continue
+               if options.difficulty!='':
+                  flag=0
+                  for j in range(len(pa7)):
+                    if nd.find(pa7[j])!=-1:
+                        flag=1
+                        result=1
+                  if flag==0:
+                    continue
+
                if result==1:
                   count=count+1
                   print filename

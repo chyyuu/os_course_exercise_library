@@ -20,7 +20,7 @@ if len(sys.argv)!=2:
 try:
    for parent,dirnames,filenames in os.walk(sys.argv[1]):
         for filename in filenames:
-            if filename.find(".md")==-1 or filename.find(".md~")!=-1:
+            if re.match('^(\d+)(.md)$', filename)==None:
                continue
             else:
                 result=[]
@@ -31,13 +31,14 @@ try:
                      a={"context": line, "line":i}
                      result.append(a)
                 fr.close()
-                xx1=0
-                xx2=0
+                xx1=0 #多选标志
+                xx2=0 #单选标志
                 kn=0
                 cc=0
                 js=0
+                nd=0
                 i=''
-                if len(result)<7:
+                if len(result)<8:
                    print filename,"文件内容不完整"
                    continue
                 for j in range(len(result)):
@@ -63,12 +64,15 @@ try:
                     if re.match('^(> 知识点：)', b["context"])!=None:
                         kn=1
                         if result[j-1]["context"]!='\n':
-                           print filename,'第',j+1,'少一个空行'
+                           print filename,'第',j+1,'行少一个空行'
                         continue
                     if re.match('^(> 出处：)', b["context"])!=None:
                         cc=1
                         if re.match('^(> 知识点：)', result[j-1]["context"])==None:
                            print filename,'第',j+1,'少知识点'
+                        continue
+                    if re.match('^(> 难度：)', b["context"])!=None:
+                        nd=1
                         continue
                     if re.match('^(> )', b["context"])!=None:
                        js=1
@@ -82,6 +86,8 @@ try:
                     print filename,'没有找到知识点'
                 if cc==0:
                     print filename,'没有找到出处'
+                if nd==0:
+                    print filename,'没有找到难度'
                 if js==0:
                     print filename,'没有找到答案解释'
 

@@ -5,6 +5,7 @@ import sys
 import random
 import re
 import os
+from optparse import OptionParser
 
 editor='''<div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code" value="{1}">提交</button>
@@ -14,6 +15,24 @@ editor='''<div id="active-code">
 <div id="result"></div>
 </div>'''
 
+
+usage="usage: %prog DIRECTORY [options]"
+parse = OptionParser(usage=usage)
+#parse.add_option("-p", "--path", default="", help="题库目录", action="store", type="string", dest="path")
+parse.add_option("-s", "--single", default="", help="单选题数量", action="store", type="string", dest="single")
+parse.add_option("-m", "--multiple", default="", help="多选题数量", action="store", type="string", dest="multiple")
+parse.add_option("-j", "--judge", default="", help="判断题数量", action="store", type="string", dest="judge")
+parse.add_option("-f", "--fill", default="", help="填空题数量", action="store", type="string", dest="fill")
+parse.add_option("-q", "--question", default="", help="问答题数量", action="store", type="string", dest="question")
+
+(options, args)=parse.parse_args()
+
+if len(sys.argv)<2:
+   print "missing operand"
+   print "Try --help for more information."
+   exit(-1)
+
+
 def mkdir(path):
     isexist=os.path.exists('test/'+path)
     if not isexist:
@@ -22,41 +41,24 @@ def mkdir(path):
 reload(sys)  
 sys.setdefaultencoding('utf8') 
 
-
-if len(sys.argv) !=7 and len(sys.argv)!=3:
-   print "usage:%s %s <xz_count> <dzd_count> <pd_count> <tk_count>  <wd_count> " % (sys.argv[0], '<filepath>')
-   print "      %s %s %s" %(sys.argv[0], '<filepath>', '<zhishidian>')
-   exit(-1)
-
-if len(sys.argv)==3:
-   if(isinstance(sys.argv[2], basestring)):
-      ff=open(sys.argv[2], 'wb')
-      for parent,dirnames,filenames in os.walk(sys.argv[1]):
-        for filename in filenames:
-          if parent==sys.argv[1]:  
-            if filename.find('md') == -1 or filename.find('md~')!=-1:
-               continue
-            
-            fr=open(sys.argv[1]+'/'+filename, 'rb')
-            context=fr.read()
-            result=re.search(u'(\u77e5\u8bc6\u70b9\uff1a)([\u4e00-\u9fa5]+|I/O)([、]*[\u4e00-\u9fa5]*)*', context.decode('utf8'))
-            if result!=None:        
-               if result.group().find(sys.argv[2])!=-1:
-                  ff.write(filename + '\n')
-            fr.close()
-   ff.close()
-   exit(-1)
-
+#各种类型题目总数量list
 xz_list=[]
 dzd_list=[]
 pd_list=[]
 tk_list=[]
 wd_list=[]
 
+#随机挑选出来的题目list
+number_xz=[]
+number_dzd=[]
+number_pd=[]
+number_tk=[]
+number_wd=[]
+
 for parent,dirnames,filenames in os.walk(sys.argv[1]):
    for filename in filenames:
       #print filename
-      if filename.find('md') == -1 or filename.find('md~')!=-1:
+      if re.match('^(\d+)(.md)$', filename)==None:
           continue
       fr=open(sys.argv[1]+'/'+filename, 'rb')
       line=fr.readline()
@@ -80,17 +82,49 @@ print "pd",len(pd_list)
 print "tk",len(tk_list)
 print "wd",len(wd_list) 
 
-if(int(sys.argv[2])>len(xz_list) or int(sys.argv[3])>len(dzd_list) or int(sys.argv[4])>len(pd_list) or int(sys.argv[5])>len(tk_list) or int(sys.argv[6])>len(wd_list)):
-   print "error"
-   exit(-1)
-     
-number_xz=random.sample(xz_list, int(sys.argv[2]))
-number_dzd=random.sample(dzd_list, int(sys.argv[3]))
-number_pd=random.sample(pd_list, int(sys.argv[4]))
-number_tk=random.sample(tk_list, int(sys.argv[5]))
-number_wd=random.sample(wd_list, int(sys.argv[6]))
+
+
+if options.single!='':
+  if int(options.single)>len(xz_list):
+     print "单选题数量大于总数量" 
+     exit(-1)
+  else:
+     number_xz=random.sample(xz_list, int(options.single))
+
+if options.multiple!='':
+  if int(options.multiple)>len(dzd_list):
+     print "多选题数量大于总数量" 
+     exit(-1)
+  else:
+     number_dzd=random.sample(dzd_list, int(options.multiple))
+
+if options.judge!='':
+  if int(options.judge)>len(pd_list):
+     print "判断题数量大于总数量" 
+     exit(-1)
+  else:
+     number_pd=random.sample(pd_list, int(options.judge))
+
+if options.fill!='':
+  if int(options.fill)>len(tk_list):
+     print "填空题数量大于总数量" 
+     exit(-1)
+  else:
+     number_tk=random.sample(tk_list, int(options.fill))
+
+if options.question!='':
+  if int(options.question)>len(wd_list):
+     print "问答题数量大于总数量" 
+     exit(-1)
+  else:
+     number_wd=random.sample(wd_list, int(options.question))  
+
+
+
+
+
 fsj=open('test/SUMMARY.md', 'wb')
-#fsj.write('#选择题\n')
+
 fsj.write('#sj\n')
 
 print number_xz
@@ -98,11 +132,10 @@ print number_dzd
 print number_pd
 print number_tk
 print number_wd
-print dzd_list
-   #print tk_list[number_tk[j]]
-   #print wd_list[number_wd[j]]
 
-for j in range(len(number_xz)):
+
+if len(number_xz)!=0:
+  for j in range(len(number_xz)):
    fxz=open(sys.argv[1]+'/'+ number_xz[j], 'rb')
    text=fxz.read()
    text=re.sub('^([12345]\n)', '', text)
@@ -119,7 +152,8 @@ for j in range(len(number_xz)):
    f.close()
 #fsj.write('#填空题\n')
 
-for j in range(len(number_dzd)):
+if len(number_dzd)!=0:
+  for j in range(len(number_dzd)):
    fxz=open(sys.argv[1]+'/'+ number_dzd[j], 'rb')
    text=fxz.read()
    text=re.sub('^([12345]\n)', '', text)
@@ -135,7 +169,8 @@ for j in range(len(number_dzd)):
    f.write('---\n')
    f.close()
 
-for j in range(len(number_pd)):
+if len(number_pd)!=0:
+  for j in range(len(number_pd)):
    fxz=open(sys.argv[1]+'/'+ number_pd[j], 'rb')
    text=fxz.read()
    text=re.sub('^([12345]\n)', '', text)
@@ -151,8 +186,8 @@ for j in range(len(number_pd)):
    f.write('---\n')
    f.close()
 
-x=1
-for k in range(len(number_tk)):
+if len(number_tk)!=0:
+  for k in range(len(number_tk)):
    #fsj.write(str(x)+'.')
    ftk=open(sys.argv[1]+'/'+ number_tk[k], 'rb')
    text=ftk.read()
@@ -176,12 +211,11 @@ for k in range(len(number_tk)):
    f.close()
    fa.close()
    ftk.close()
-   x=x+1
+  
 
-y=1
-#fsj.write('#问答题\n')
-for l in range(len(number_wd)):  
-   #fsj.write(str(y)+'.')
+
+if len(number_wd)!=0:
+  for l in range(len(number_wd)):  
    fwd=open(sys.argv[1]+'/'+ number_wd[l], 'rb')
    text=fwd.read()
    text=re.sub('^([12345]\n)', '', text)
@@ -203,5 +237,5 @@ for l in range(len(number_wd)):
    fwd.close()
    f.close()
    fa.close()
-   y=y+1
+
 fsj.close()
