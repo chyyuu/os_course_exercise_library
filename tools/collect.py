@@ -30,6 +30,7 @@ if len(sys.argv)<2:
 
 
 count=0
+allfile=[]
 pa1=options.type.split(',')
 pa2=options.question.split(',')
 pa3=options.option.split(',')
@@ -138,8 +139,12 @@ try:
 
                if result==1:
                   count=count+1
-                  print filename
+                  allfile.append(filename)
                   #shutil.copyfile(parent+'/'+filename, "./result/"+filename)
+    print "len",len(allfile)
+    allfile.sort()
+    for k in range(len(allfile)):
+	print allfile[k]
     print count,"个文件"
 except Exception,e:
    print e
