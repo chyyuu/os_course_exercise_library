@@ -58,6 +58,7 @@ number_wd=[]
 for parent,dirnames,filenames in os.walk(sys.argv[1]):
    for filename in filenames:
       #print filename
+      #print parent
       if re.match('^(\d+)(.md)$', filename)==None:
           continue
       fr=open(sys.argv[1]+'/'+filename, 'rb')
@@ -122,7 +123,7 @@ if options.question!='':
 
 
 
-
+mkdir('test')
 fsj=open('test/SUMMARY.md', 'wb')
 
 fsj.write('#sj\n')
