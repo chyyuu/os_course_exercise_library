@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    <!-- Start book 说明 -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+        <title>wd1127 | 说明</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="$gitbook serve . 运行web服务">
+        <meta name="keywords" content="">
+        <meta name="generator" content="GitBook 1.5.0">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+        
+    
+    
+    <link rel="next" href="../wd1199/1199.html" />
+    
+    
+    <link rel="prev" href="../wd1104/1104.html" />
+    
+
+        <!-- head:end -->
+    </head>
+    <body>
+        <!-- body:start -->
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-quizzes/quizzes.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-rust-playpen/editor.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-grvis/test.css">
+        
+    
+    
+
+        
+    <div class="book" data-level="61" data-basepath=".." data-revision="1445477045953">
+    
+
+
+
+    <div class="book-body">
+        
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_29">
+                    
+                        <p>fork例子
+第二题： 一、 （10分）给出程序fork.c的输出结果。
+注：1）getpid()和getppid()是两个系统调用，分别返回本进程标识和父进程标识。
+2）你可以假定每次新进程创建时生成的进程标识是顺序加1得到的；在进程标识为1000的命令解释程序shell中启动该程序的执行
+    ```
+    nclude</p>
+<pre class="sh_c"><code>#include
+/ getpid() and fork() are system calls declared in unistd.h.  They return /
+/ values of type pid_t.  This pid_t is a special type for process ids. /
+/ It&#39;s equivalent to int. /
+int main(void)
+{
+  pid_t childpid;
+  int x = 5;
+        int i;
+  childpid = fork();
+  for ( i = 0;  i &lt; 2;  i++)  {
+    printf(This is process %d; childpid = %d; The parent of this process has id %d; i = %d; x = %d
+</code></pre><p>&quot;
+getpid()</p>
+<ul>
+<li><label class="quiz-label" for="quiz-row-28-0-0"></label><input name='quiz-row-28-0' id='quiz-row-28-0-0' type='checkbox' checked/></li>
+</ul>
+<p>知识点：。
+出处：网络
+难度：1
+getppid()<div class="active-code"></p>
+<p><textarea rows="10" cols="80"></textarea></p>
+<div><input class="action-submit" type="submit" value="提交"/></div>
+</div>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        
+        
+        
+        
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-quizzes/quizzes.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-rust-playpen/ace/ace.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-rust-playpen/editor.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-rust-playpen/mode-rust.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-grvis/test.js"></script>
+    
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"rust-playpen":{},"grvis":{},"quizees":{}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+    </body>
+    <!-- End of book 说明 -->
+</html>

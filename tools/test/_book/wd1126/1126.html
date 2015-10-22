@@ -1,0 +1,432 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    <!-- Start book 说明 -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+        <title>wd1126 | 说明</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="$gitbook serve . 运行web服务">
+        <meta name="keywords" content="">
+        <meta name="generator" content="GitBook 1.5.0">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+        
+    
+    
+    <link rel="next" href="../wd1187/1187.html" />
+    
+    
+    <link rel="prev" href="../wd1122/1122.html" />
+    
+
+        <!-- head:end -->
+    </head>
+    <body>
+        <!-- body:start -->
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-quizzes/quizzes.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-rust-playpen/editor.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-grvis/test.css">
+        
+    
+    
+
+        
+    <div class="book" data-level="10" data-basepath=".." data-revision="1445477045953">
+    
+
+
+
+    <div class="book-body">
+        
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_28">
+                    
+                        <p>系统调用访问过程
+第一题： 一、（2362H2分）下面是与read()系统调用实现相关源代码。请补全其中所缺的代码，以正确完成从用户态函数read()到内核态函数sysfil
+e_read()的参数传递和返回过程。提示：每处需要补全的代码只需要一行，一共有10个空要填。</p>
+<pre class="sh_c"><code>```
+    user/libs/file.c
+    ---------------------------------
+    ...
+    int
+    read(int fd, void base, size_t len) {
+        ...(1)...
+    }
+    ...
+    ---------------------------------
+    user/libs/syscall.c
+    ---------------------------------
+    ...
+    #define MAX_ARGS
+    static inline int
+    syscall(int num, ...) {
+              int ret;
+              va_list ap;
+             va_start(ap, num);
+             uint32_t a[MAX_ARGS];
+             int i;
+             for (i = 0; i &lt; MAX_ARGS; i ++) {
+                       a[i] = va_arg(ap, uint32_t);
+             }
+             va_end(ap);
+             asm volatile (
+                                &quot;int %1;&quot;
+                                : &quot;=a&quot; (ret)
+                                : &quot;i&quot; (T_SYSCALL),
+                                  &quot;a&quot; (num),
+                                  &quot;d&quot; (a[0]),
+                                  &quot;c&quot; (a[1]),
+                                  &quot;b&quot; (a[2]),
+                                  &quot;D&quot; (a[3]),
+                                  &quot;S&quot; (a[4])
+                                : &quot;cc&quot;, &quot;memory&quot;);
+             return ret;
+    }
+    ...
+    int
+    sys_read(int fd, void base, size_t len) {
+             ...(2)...
+    }
+    ...
+    ---------------------------------
+    libs/stdarg.h
+    ---------------------------------
+    ...
+    typedef char  va_list;
+    #define __va_size(type)                                                              \
+             ((sizeof(type) + (sizeof(long) - 1)) / sizeof(long)  sizeof(long))
+    #define va_start(ap, last)                                                    \
+             ((ap) = (va_list)&amp;(last) + __va_size(last))
+    #define va_arg(ap, type)                                                    \
+             ((type )((ap) += __va_size(type), (ap) - __va_size(type)))
+    #define va_end(ap)             ((void)0)
+    ...
+    ---------------------------------
+    libs/unistd.h
+    ---------------------------------
+    ...
+    #define T_SYSCALL                           0x80
+    / syscall number /
+    ...
+    #define SYS_read                       102
+    #define SYS_write                      103
+    ...
+    ---------------------------------
+    kern/syscall/syscall.c
+    ---------------------------------
+    ...
+    struct trapframe {
+             struct pushregs tf_regs;
+             uint16_t tf_es;
+             uint16_t tf_padding1;
+             uint16_t tf_ds;
+             uint16_t tf_padding2;
+             uint32_t tf_trapno;
+             / below here defined by x86 hardware /
+             uint32_t tf_err;
+             uintptr_t tf_eip;
+             uint16_t tf_cs;
+             uint16_t tf_padding3;
+             uint32_t tf_eflags;
+             / below here only when crossing rings, such as from user to kernel /
+             uintptr_t tf_esp;
+             uint16_t tf_ss;
+             uint16_t tf_padding4;
+    };
+    ...
+    ---------------------------------
+    kern/trap/trap.c
+    ---------------------------------
+    ...
+    static void
+    trap_dispatch(struct trapframe tf) {
+             char c;
+             int ret;
+             switch (...(3)...) {
+             case T_DEBUG:
+             case T_BRKPT:
+                       debug_monitor(tf);
+                       break;
+             case T_PGFLT:
+                       if ((ret = pgfault_handler(tf)) != 0) {
+                                print_trapframe(tf);
+                                if (current == NULL) {
+                                         panic(&quot;handle pgfault failed. %e
+&quot;, ret);
+                                }
+                                else {
+                                         if (trap_in_kernel(tf)) {
+                                                   panic(&quot;handle pgfault failed in kernel mode. %e
+&quot;, ret);
+                                         }
+                                         cprintf(&quot;killed by kernel.
+&quot;);
+                                         do_exit(-E_KILLED);
+                                }
+                       }
+                       break;
+             case T_SYSCALL:
+                       ...(4)...
+                       break;
+             case IRQ_OFFSET + IRQ_TIMER:
+                       ticks ++;
+                       assert(current != NULL);
+                       run_timer_list();
+                       break;
+             case IRQ_OFFSET + IRQ_COM1:
+             case IRQ_OFFSET + IRQ_KBD:
+                      if ((c = cons_getc()) == 13) {
+                                debug_monitor(tf);
+                       }
+                       else {
+                                extern void dev_stdin_write(char c);
+                                dev_stdin_write(c);
+                       }
+                       break;
+             case IRQ_OFFSET + IRQ_IDE1:
+             case IRQ_OFFSET + IRQ_IDE2:
+                       / do nothing /
+                       break;
+             default:
+                       print_trapframe(tf);
+                       if (current != NULL) {
+                                cprintf(&quot;unhandled trap.
+&quot;);
+                                do_exit(-E_KILLED);
+                       }
+                       panic(&quot;unexpected trap in kernel.
+&quot;);
+             }
+    }
+    void
+    trap(struct trapframe tf) {
+             // used for previous projects
+             if (current == NULL) {
+                       trap_dispatch(tf);
+             }
+             else {
+                       // keep a trapframe chain in stack
+                       struct trapframe otf = current-&gt;tf;
+                       current-&gt;tf = tf;
+                       bool in_kernel = trap_in_kernel(tf);
+                       ...(5)...
+                       current-&gt;tf = otf;
+                       if (!in_kernel) {
+                                if (current-&gt;flags &amp; PF_EXITING) {
+                                         do_exit(-E_KILLED);
+                                }
+                                if (current-&gt;need_resched) {
+                                         schedule();
+                                }
+                       }
+             }
+    }
+    ...
+    ---------------------------------
+    kern/syscall/syscall.c
+    ---------------------------------
+    ...
+    static int
+    sys_read(uint32_t arg[]) {
+             int fd = (int)arg[0];
+             size_t len = (size_t)...(6)...;
+             void base = (void )...(7)...;
+             ...(8a)...
+    }
+    ...
+    static int (syscalls[])(uint32_t arg[]) = {
+    ...
+             [SYS_read]                               sys_read,
+             [SYS_write]                              sys_write,
+    ...
+             [SYS_mkfifo]                            sys_mkfifo,
+    };
+    #define NUM_SYSCALLS          ((sizeof(syscalls)) / (sizeof(syscalls[0])))
+    void
+    syscall(void) {
+             struct trapframe tf = current-&gt;tf;
+             uint32_t arg[5];
+             int num = tf-&gt;...(8b)...;
+             if (num &gt;= 0 &amp;&amp; num &lt; NUM_SYSCALLS) {
+                       if (syscalls[num] != NULL) {
+                                arg[0] = tf-&gt;tf_regs.reg_edx;
+                                arg[1] = tf-&gt;tf_regs.reg_ecx;
+                                arg[2] = tf-&gt;tf_regs.reg_ebx;
+                                arg[3] = tf-&gt;tf_regs.reg_edi;
+                                arg[4] = tf-&gt;tf_regs.reg_esi;
+                                tf-&gt;tf_regs.reg_eax = ...(9)...;
+                                return ;
+                       }
+             }
+             print_trapframe(tf);
+             panic(&quot;undefined syscall %d, pid = %d, name = %s.
+&quot;,
+                                num, current-&gt;pid, current-&gt;name);
+    }
+    ...
+    ---------------------------------
+    kern/fs/sysfile.c
+    ---------------------------------
+    ...
+    int
+    sysfile_read(int fd, void base, size_t len) {
+             struct mm_struct mm = current-&gt;mm;
+             if (len == 0) {
+                       return 0;
+             }
+             if (!file_testfd(fd, 1, 0)) {
+                       return -E_INVAL;
+             }
+             void buffer;
+             if ((buffer = kmalloc(IOBUF_SIZE)) == NULL) {
+                       return -E_NO_MEM;
+             }
+             int ret = 0;
+             size_t copied = 0, alen;
+             while (len != 0) {
+                       if ((alen = IOBUF_SIZE) &gt; len) {
+                                alen = len;
+                       }
+                       ret = ...(10)...;
+                       if (alen != 0) {
+                                lock_mm(mm);
+                                {
+                                         if (copy_to_user(mm, base, buffer, alen)) {
+                                                   assert(len &gt;= alen);
+                                                   base += alen, len -= alen, copied += alen;
+                                         }
+                                         else if (ret == 0) {
+                                                   ret = -E_INVAL;
+                                         }
+                                }
+                                unlock_mm(mm);
+                       }
+                       if (ret != 0 || alen == 0) {
+                                goto out;
+                       }
+             }
+    out:
+             kfree(buffer);
+             if (copied != 0) {
+                       return copied;
+             }
+             return ret;
+    }
+    ...
+    ---------------------------------
+    kern/fs/file.c
+    ---------------------------------
+    ...
+    int
+    file_read(int fd, void base, size_t len, size_t copied_store) {
+             int ret;
+             struct file file;
+             copied_store = 0;
+             if ((ret = fd2file(fd, &amp;file;)) != 0) {
+                       return ret;
+             }
+             if (!file-&gt;readable) {
+                       return -E_INVAL;
+             }
+             filemap_acquire(file);
+             struct iobuf __iob, iob = iobuf_init(&amp;__iob, base, len, file-&gt;pos);
+             ret = vop_read(file-&gt;node, iob);
+             size_t copied = iobuf_used(iob);
+             if (file-&gt;status == FD_OPENED) {
+                       file-&gt;pos += copied;
+             }
+             copied_store = copied;
+             filemap_release(file);
+             return ret;
+    }
+    ...
+    ---------------------------------
+    ```
+</code></pre><div class="active-code">
+<textarea rows="10" cols="80"></textarea>
+<div><input class="action-submit" type="submit" value="提交"/></div>
+</div>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        
+        
+        
+        
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-quizzes/quizzes.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-rust-playpen/ace/ace.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-rust-playpen/editor.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-rust-playpen/mode-rust.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-grvis/test.js"></script>
+    
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"rust-playpen":{},"grvis":{},"quizees":{}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+    </body>
+    <!-- End of book 说明 -->
+</html>

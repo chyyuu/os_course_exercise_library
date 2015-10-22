@@ -1,0 +1,342 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    <!-- Start book 说明 -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+        <title>wd1128 | 说明</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="$gitbook serve . 运行web服务">
+        <meta name="keywords" content="">
+        <meta name="generator" content="GitBook 1.5.0">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+        
+    
+    
+    <link rel="next" href="../wd1140/1140.html" />
+    
+    
+    <link rel="prev" href="../wd1200/1200.html" />
+    
+
+        <!-- head:end -->
+    </head>
+    <body>
+        <!-- body:start -->
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-quizzes/quizzes.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-rust-playpen/editor.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-grvis/test.css">
+        
+    
+    
+
+        
+    <div class="book" data-level="42" data-basepath=".." data-revision="1445477045953">
+    
+
+
+
+    <div class="book-body">
+        
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_30">
+                    
+                        <p>调度算法：
+     第三题：
+    一、   (18分)调度器是操作系统内核中依据调度算法进行进程切换选择的模块。1）试描述时间片轮转算法（Round Robin）的基本原理。2）下面代码是ucore中调度器和时间片轮转算法的实现代码。请补全其中所缺代码，以实现调度器和调度算法的功能。提示：每处需要补全的代码只需要一行，一共有7个空要填。</p>
+<pre class="sh_c"><code>```
+    sched.h
+    -----------------------------------------------
+    …
+    struct proc_struct;
+    typedef struct {
+      unsigned int expires;
+      struct proc_struct proc;
+      list_entry_t timer_link;
+    } timer_t;
+    #define le2timer(le, member)      \
+      to_struct((le), timer_t, member)
+    static inline timer_t 
+    timer_init(timer_t timer, struct proc_struct proc, int expires) {
+      timer-&gt;expires = expires;
+      timer-&gt;proc = proc;
+      list_init(&amp;(timer-&gt;timer_link));
+      return timer;
+    }
+    struct run_queue;
+    struct sched_class {
+      const char name;
+      void (init)(struct run_queue rq);
+      void (enqueue)(struct run_queue rq, struct proc_struct proc);
+      void (dequeue)(struct run_queue rq, struct proc_struct proc);
+      struct proc_struct (pick_next)(struct run_queue rq);
+      void (proc_tick)(struct run_queue rq, struct proc_struct proc);
+    };
+    struct run_queue {
+      list_entry_t run_list;
+      unsigned int proc_num;
+      int max_time_slice;
+      list_entry_t rq_link;
+    };
+    #define le2rq(le, member)     \
+      to_struct((le), struct run_queue, member)
+    void sched_init(void);
+    void wakeup_proc(struct proc_struct proc);
+    void schedule(void);
+    void add_timer(timer_t timer);
+    void del_timer(timer_t timer);
+    void run_timer_list(void);
+    extern struct proc_struct idleproc, initproc, current;
+    extern struct proc_struct kswapd;
+    …
+    -----------------------------------------------
+    sched.c
+    -----------------------------------------------
+    …
+    static list_entry_t timer_list;
+    static struct sched_class sched_class;
+    static struct run_queue rq;
+    static inline void
+    sched_class_enqueue(struct proc_struct proc) {
+      if (proc != idleproc) {
+        sched_class-&gt;enqueue(rq, proc);
+      }
+    }
+    static inline void
+    sched_class_dequeue(struct proc_struct proc) {
+      sched_class-&gt;dequeue(rq, proc);
+    }
+    static inline struct proc_struct 
+    sched_class_pick_next(void) {
+      return sched_class-&gt;pick_next(rq);
+    }
+    static void
+    sched_class_proc_tick(struct proc_struct proc) {
+      if (proc != idleproc) {
+        sched_class-&gt;proc_tick(rq, proc);
+      }
+      else {
+        proc-&gt;need_resched = 1;
+      }
+    }
+    static struct run_queue __rq[4];
+    void
+    sched_init(void) {
+      list_init(&amp;timer;_list);
+      rq = __rq;
+      list_init(&amp;(rq-&gt;rq_link));
+      rq-&gt;max_time_slice = 8;
+      int i;
+      for (i = 1; i &lt; sizeof(__rq) / sizeof(__rq[0]); i ++) {
+        list_add_before(&amp;(rq-&gt;rq_link), &amp;(__rq[i].rq_link));
+        __rq[i].max_time_slice = rq-&gt;max_time_slice  (1 &lt;&lt; i);
+      }
+      sched_class = &amp;MLFQ;_sched_class;
+      sched_class-&gt;init(rq);
+      cprintf(&quot;sched class: %s
+&quot;, sched_class-&gt;name);
+    }
+    void
+    wakeup_proc(struct proc_struct proc) {
+      assert(proc-&gt;state != PROC_ZOMBIE);
+      bool intr_flag;
+      local_intr_save(intr_flag);
+      {
+        if (proc-&gt;state != PROC_RUNNABLE) {
+          proc-&gt;state = PROC_RUNNABLE;
+          proc-&gt;wait_state = 0;
+          sched_class_enqueue(proc);
+        }
+        else {
+          warn(&quot;wakeup runnable process.
+&quot;);
+        }
+      }
+      local_intr_restore(intr_flag);
+    }
+    void
+    schedule(void) {
+      bool intr_flag;
+      struct proc_struct next;
+      local_intr_save(intr_flag);
+      {
+        current-&gt;need_resched = 0;
+        if (current-&gt;state == PROC_RUNNABLE) {
+          ...(1)...
+        }
+        if ((next = sched_class_pick_next()) != NULL) {
+          ...(2)...
+        }
+      }
+      local_intr_restore(intr_flag);
+      if (next == NULL) {
+        next = ...(3)...;
+      }
+      next-&gt;runs ++;
+      if (next != current) {
+        ...(4)...
+      }
+    }
+    …
+    -----------------------------------------------
+    sched_RR.c
+    -----------------------------------------------
+    …
+    static void
+    RR_init(struct run_queue rq) {
+      list_init(&amp;(rq-&gt;run_list));
+      rq-&gt;proc_num = 0;
+    }
+    static void
+    RR_enqueue(struct run_queue rq, struct proc_struct proc) {
+      assert(list_empty(&amp;(proc-&gt;run_link)));
+      list_add_before(&amp;(rq-&gt;run_list), &amp;(proc-&gt;run_link));
+      if (proc-&gt;time_slice == 0 || proc-&gt;time_slice &gt; rq-&gt;max_time_slice) {
+        ...(5)...
+      }
+      proc-&gt;rq = rq;
+      rq-&gt;proc_num ++;
+    }
+    static void
+    RR_dequeue(struct run_queue rq, struct proc_struct proc) {
+      assert(!list_empty(&amp;(proc-&gt;run_link)) &amp;&amp; proc-&gt;rq == rq);
+      list_del_init(&amp;(proc-&gt;run_link));
+      rq-&gt;proc_num --;
+    }
+    static struct proc_struct 
+    RR_pick_next(struct run_queue rq) {
+      list_entry_t le = list_next(&amp;(rq-&gt;run_list));
+      if (le != &amp;(rq-&gt;run_list)) {
+        return le2proc(le, run_link);
+      }
+      return NULL;
+    }
+    static void
+    RR_proc_tick(struct run_queue rq, struct proc_struct proc) {
+      if (proc-&gt;time_slice &gt; 0) {
+        ...(6)...
+      }
+      if (proc-&gt;time_slice == 0) {
+        ...(7)...
+      }
+    }
+    struct sched_class RR_sched_class = {
+      .name = &quot;RR_scheduler&quot;,
+      .init = RR_init,
+      .enqueue = RR_enqueue,
+      .dequeue = RR_dequeue,
+      .pick_next = RR_pick_next,
+      .proc_tick = RR_proc_tick,
+    };
+    -----------------------------------------------
+    proc.c
+    -----------------------------------------------
+    …
+    // proc_run - make process &quot;proc&quot; running on cpu
+    // NOTE: before call switch_to, should load  base addr of &quot;proc&quot;&#39;s new PDT
+    void
+    proc_run(struct proc_struct proc) {
+        if (proc != current) {
+            bool intr_flag;
+            struct proc_struct prev = current, next = proc;
+            local_intr_save(intr_flag);
+            {
+                current = proc;
+                load_esp0(next-&gt;kstack + KSTACKSIZE);
+                lcr3(next-&gt;cr3);
+                switch_to(&amp;(prev-&gt;context), &amp;(next-&gt;context));
+            }
+            local_intr_restore(intr_flag);
+        }
+    }
+    …
+    -----------------------------------------------
+    ```
+</code></pre><div class="active-code">
+<textarea rows="10" cols="80"></textarea>
+<div><input class="action-submit" type="submit" value="提交"/></div>
+</div>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        
+        
+        
+        
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-quizzes/quizzes.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-rust-playpen/ace/ace.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-rust-playpen/editor.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-rust-playpen/mode-rust.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-grvis/test.js"></script>
+    
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"rust-playpen":{},"grvis":{},"quizees":{}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+    </body>
+    <!-- End of book 说明 -->
+</html>

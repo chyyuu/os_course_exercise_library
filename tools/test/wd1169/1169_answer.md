@@ -1,0 +1,4 @@
+知识点：实验环境准备
+出处：网络
+难度：1
+清除文件夹：make clean 编译lab1：make 调出debug命令行：make debug

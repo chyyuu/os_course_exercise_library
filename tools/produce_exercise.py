@@ -7,13 +7,12 @@ import re
 import os
 from optparse import OptionParser
 
-editor='''<div id="active-code">
-<button class="btn btn-primary" type="button" id="run-code" value="{1}">提交</button>
-<button class="btn btn-primary" type="button" id="reset-code">重置</button>
-<div id="editor">
-</div>
-<div id="result"></div>
+editor='''<div class="active-code">
+<textarea rows="10" cols="80"></textarea>
+<div><input class="action-submit" type="submit" value="提交"/></div>
 </div>'''
+
+editor1='<div><input class="action-submit" type="submit" value="提交"/></div>'
 
 
 usage="usage: %prog DIRECTORY [options]"
@@ -202,7 +201,7 @@ if len(number_tk)!=0:
    fsj.write('\n')
    index=text.find('- [x] ')
    f.write(text[:index])
-   editor1=editor.replace('{1}', 'tk'+str(tihao))
+   #editor1=editor.replace('{1}', 'tk'+str(tihao))
    f.write(editor1)
    fa.write(text[index+9:])
    #text=re.sub('- \[x\] ', editor, text,  flags=re.M)
@@ -229,8 +228,8 @@ if len(number_wd)!=0:
    fsj.write('\n')
    index=text.find('- [x] ')
    f.write(text[:index])
-   editor2=editor.replace('{1}', 'wd'+str(tihao))
-   f.write(editor2)
+   #editor2=editor.replace('{1}', 'wd'+str(tihao))
+   f.write(editor)
    fa.write(text[index+9:])
    #text=re.sub('^(- \[x\] )', editor, text, flags=re.M)
    #fsj.write(text)
