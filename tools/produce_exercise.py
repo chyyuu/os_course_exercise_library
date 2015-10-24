@@ -7,6 +7,9 @@ import re
 import os
 from optparse import OptionParser
 
+reload(sys)  
+sys.setdefaultencoding('utf8') 
+
 editor='''<div class="active-code">
 <textarea rows="10" cols="80"></textarea>
 <div><input class="action-submit" type="submit" value="提交"/></div>
@@ -37,8 +40,7 @@ def mkdir(path):
     if not isexist:
        os.makedirs('test/'+path)
 
-reload(sys)  
-sys.setdefaultencoding('utf8') 
+
 
 #各种类型题目总数量list
 xz_list=[]
