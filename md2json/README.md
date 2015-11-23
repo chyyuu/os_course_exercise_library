@@ -10,3 +10,5 @@
       "answer"：参考答案
       "degree_of_difficulty"：难度
       "knowleget"：知识点
+      
+md2json.py:实现把.md格式转化为 .json  的python脚本（python2.7编译器）
