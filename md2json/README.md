@@ -32,13 +32,18 @@ md2json.py:实现把.md格式转化为 .json  的python脚本（python2.7编译�
       }
     ```
   
-   type:题目类型 ,String，有四种类型：(单选题："single_answer"),(多选题："multi_answer"),(填空题："fill_in_the_blank"),(问答题:"question_answer"),(判断题："true_false")
+   type:题目类型 ,String，有四种类型：
+       单选题："single_answer"
+       多选题："multi_answer"
+       填空题："fill_in_the_blank"
+       问答题:"question_answer"
+       判断题："true_false"
    
    question:是题干描述 String;
    
    degree_of_difficulty:题目难度,int,取值范围是[1,2,3,4,5]
    
-   source：题目来源
+   source：题目来源,String
    
    options:选项,list
    
