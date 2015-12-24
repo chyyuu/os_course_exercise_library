@@ -33,6 +33,7 @@ md2json.py:实现把.md格式转化为 .json  的python脚本（python2.7编译�
     ```
   
    type:题目类型 ,String，有四种类型：
+   
        单选题："single_answer"
        多选题："multi_answer"
        填空题："fill_in_the_blank"
