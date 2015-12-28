@@ -4,17 +4,21 @@
 - `json/`文件夹下用于保存json格式的题目数据
   - 由于部分题目未提供答案，因此未产生题目数据
 - `markdown/`文件夹下用于保存原始的md格式备份
-- `md/`文件夹下用于保存json转换为md的结果*(json2md的功能正在开发中...)*
+- `md/`文件夹下用于保存json转换为md的结果
 
-## md2json2.py 说明
+## md2json.py 说明
 执行命令完成转换*(要求Phthon2.7)*
 
-```$ python md2json2.py markdown/ json/```
+```$ python md2json.py markdown/ json/```
 
 更多帮助
 
-```$ python md2json2.py -h```
+```$ python md2json.py -h```
 
+## json2md.py说明
+执行命令完成转换*(要求python2.7)*
+
+```$ python json2md.py json/ md/```
 
 ## Json格式说明
 
