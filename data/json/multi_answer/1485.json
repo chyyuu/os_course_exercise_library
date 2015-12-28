@@ -1,0 +1,17 @@
+{
+    "knowledge":[
+        "I/O子系统"
+    ],
+    "degree_of_difficulty":1,
+    "question":"关于IO数据传输的阐述正确的是（） s3\n",
+    "source":"网络",
+    "answer":"AB",
+    "type":"multi_answer",
+    "options":[
+        "A.程序控制I/O(PIO, Programmed I/O)通过CPU的in/out或者load/store传输所有数据",
+        "B.DMA设备控制器可直接访问系统总线并直接与内存互相传输数据",
+        "C.DMA机制适合字符设备",
+        "D.PIO机制适合块设备"
+    ],
+    "q_number":1485
+}

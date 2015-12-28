@@ -1,0 +1,17 @@
+{
+    "knowledge":[
+        "操作系统概述"
+    ],
+    "degree_of_difficulty":1,
+    "question":"操作系统中的多道程序设计方式用于提高____\n",
+    "source":"网络",
+    "answer":"B",
+    "type":"single_answer",
+    "options":[
+        "A.稳定性",
+        "B.效率",
+        "C.兼容性",
+        "D.可靠性"
+    ],
+    "q_number":1156
+}

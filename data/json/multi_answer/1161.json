@@ -1,0 +1,17 @@
+{
+    "knowledge":[
+        "操作系统概述"
+    ],
+    "degree_of_difficulty":1,
+    "question":"设备管理的功能包括____（）\n",
+    "source":"网络",
+    "answer":"ACD",
+    "type":"multi_answer",
+    "options":[
+        "A.设备的分配和回收",
+        "B.进程调度",
+        "C.虚拟设备的实现",
+        "D.外围设备启动"
+    ],
+    "q_number":1161
+}

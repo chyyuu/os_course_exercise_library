@@ -1,0 +1,17 @@
+{
+    "knowledge":[
+        "中断、异常与系统调用"
+    ],
+    "degree_of_difficulty":1,
+    "question":"下列程序工作在内核态的有____()\n",
+    "source":"网络",
+    "answer":"ABCD",
+    "type":"multi_answer",
+    "options":[
+        "A.系统调用的处理程序",
+        "B.中断处理程序",
+        "C.进程调度",
+        "D.内存管理"
+    ],
+    "q_number":1210
+}
