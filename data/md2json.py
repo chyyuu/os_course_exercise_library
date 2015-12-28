@@ -11,7 +11,6 @@ import re
 
 
 def debug_print(dictObj):
-    # 之所以这么写是为了将unicode字符转换为可阅读的格式
     print json.dumps(dictObj, ensure_ascii=False, indent=4)
 
 
@@ -43,7 +42,7 @@ class ExerciseChecker:
             raise InvailExerciseException('invail json [type=%s]' % typeStr)
 
 
-class ExerciseParser:
+class Md2jsonParser:
     TYPE_DEF = {
         1: 'single_answer',
         2: 'multi_answer',
@@ -118,6 +117,7 @@ class ExerciseParser:
                 'degree_of_difficulty': dictData['degree_of_difficulty'],
                 'source': dictData['source'],
                 'knowledge': dictData['knowledge'],
+                'explain': dictData['explain']
             }
             if dictData['type'] in [1, 2, 3]:
                 jsonData['answer'] = ''.join(dictData['markedOption'])
@@ -256,7 +256,7 @@ if __name__ == '__main__':
     argParser.add_argument('dst', nargs='?', help='.json file directory, all .json file will be create here,\
             if src is not a directory, this option will be ignore')
     args = argParser.parse_args()
-    parser = ExerciseParser(args.src, args.dst, args.ignore_warning)
+    parser = Md2jsonParser(args.src, args.dst, args.ignore_warning)
     if args.dst is None:
         tmp = parser.md2dict(sys.argv[2])
         debug_print(tmp)
