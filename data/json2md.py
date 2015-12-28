@@ -4,7 +4,6 @@
 
 import codecs
 import os
-import argparse
 import sys
 import json
 import re
@@ -32,7 +31,7 @@ class Json2mdParser:
         self.dstDir = dstDir
 
     def saveData(self, filePath, data):
-        output = codecs.open(filePath, 'w', "utf-8")
+        output = codecs.open(filePath, 'w')
         try:
             output.write(data)
         finally:
@@ -50,10 +49,15 @@ class Json2mdParser:
                     jsonData = eval(jsonFile.read())
                     mdData = self.json2md(jsonData)
 
-                    # 根据原来的目录格式创建新目录
-                    dstPath = os.path.join(self.dstDir, filePath.strip(self.srcDir))
-                    dstPath = os.path.splitext(dstPath)[0] + '.json'
+                    # 根据分类创建目录
+                    typeStr = jsonData['type']
+                    dstPath = os.path.join(self.dstDir, typeStr, "%d.md" % jsonData["q_number"])
                     dstDir = os.path.dirname(dstPath)
+
+                    # 根据原来的目录格式创建新目录
+                    # dstPath = os.path.join(self.dstDir, filePath.strip(self.srcDir))
+                    # dstPath = os.path.splitext(dstPath)[0] + '.md'
+                    # dstDir = os.path.dirname(dstPath)
 
                     if not os.path.exists(dstDir):
                         os.makedirs(dstDir)
@@ -94,7 +98,5 @@ class Json2mdParser:
 
 
 if __name__ == '__main__':
-    parser = Json2mdParser('src', 'dst')
-    fileObj = codecs.open(sys.argv[1], encoding='utf-8')
-    print parser.json2md(eval(fileObj.read()))
-    pass
+    parser = Json2mdParser(sys.argv[1], sys.argv[2])
+    parser.doParser()
