@@ -1,0 +1,11 @@
+{
+    "knowledge":[
+        "同步互斥"
+    ],
+    "degree_of_difficulty":1,
+    "question":"并发进程中涉及到___________ 的程序段称为临界区，两个进程同时进入相关的临界区会造成___________ 的错误。\n",
+    "source":"网络",
+    "answer":"解释\n",
+    "type":"fill_in_the_blank",
+    "q_number":498
+}

@@ -1,0 +1,11 @@
+{
+    "knowledge":[
+        "物理内存管理实验"
+    ],
+    "degree_of_difficulty":1,
+    "question":"覆盖是用于解决_________________________________________ 的问题。\n",
+    "source":"网络",
+    "answer":"解释\n",
+    "type":"fill_in_the_blank",
+    "q_number":392
+}

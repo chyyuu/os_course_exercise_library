@@ -1,0 +1,17 @@
+{
+    "knowledge":[
+        "操作系统概述"
+    ],
+    "degree_of_difficulty":1,
+    "question":"多道批处理系统主要考虑的是____()\n",
+    "source":"网络",
+    "answer":"CD",
+    "type":"multi_answer",
+    "options":[
+        "A.交互性",
+        "B.及时性",
+        "C.系统效率",
+        "D.吞吐量"
+    ],
+    "q_number":1162
+}

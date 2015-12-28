@@ -1,0 +1,11 @@
+{
+    "knowledge":[
+        "I/O子系统"
+    ],
+    "degree_of_difficulty":1,
+    "question":"在对打印机进行I/O控制时，通常采用（ ）方式；对硬盘的I/O控制采用（ ）方式。\n",
+    "source":"网络",
+    "answer":"解释\n",
+    "type":"fill_in_the_blank",
+    "q_number":538
+}

@@ -1,0 +1,17 @@
+{
+    "knowledge":[
+        "中断、异常与系统调用"
+    ],
+    "degree_of_difficulty":1,
+    "question":"(2012统考)下列选项中，不可能在用户态发生的是（ ）\n",
+    "source":"网络",
+    "answer":"C",
+    "type":"single_answer",
+    "options":[
+        "A.系统调用",
+        "B.外部中断",
+        "C.进程切换",
+        "D.缺页"
+    ],
+    "q_number":1201
+}

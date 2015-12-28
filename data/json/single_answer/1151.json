@@ -1,0 +1,17 @@
+{
+    "knowledge":[
+        "操作系统概述"
+    ],
+    "degree_of_difficulty":1,
+    "question":"(2011统考)下列选项中，在用户态执行的是（ ）\n",
+    "source":"网络",
+    "answer":"A",
+    "type":"single_answer",
+    "options":[
+        "A.命令解释程序",
+        "B.缺页处理程序",
+        "C.进程调度程序",
+        "D.时钟中断处理程序"
+    ],
+    "q_number":1151
+}

@@ -1,0 +1,17 @@
+{
+    "knowledge":[
+        "实验环境准备"
+    ],
+    "degree_of_difficulty":1,
+    "question":"清华大学目前的操作系统实验中采用的OS对象是()\n",
+    "source":"网络",
+    "answer":"B",
+    "type":"single_answer",
+    "options":[
+        "A.Linux",
+        "B.ucore",
+        "C.xv6",
+        "D.Nachos"
+    ],
+    "q_number":1191
+}

@@ -1,0 +1,11 @@
+{
+    "knowledge":[
+        "连续内存分配"
+    ],
+    "degree_of_difficulty":1,
+    "question":"____________ 管理是在作业装入和处理过程中，根据作业的实际需要动态地划分存储空间的。\n",
+    "source":"网络",
+    "answer":"解释\n",
+    "type":"fill_in_the_blank",
+    "q_number":437
+}

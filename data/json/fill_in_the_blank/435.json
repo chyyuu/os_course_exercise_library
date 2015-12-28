@@ -1,0 +1,11 @@
+{
+    "knowledge":[
+        "进程管理实验"
+    ],
+    "degree_of_difficulty":1,
+    "question":"进程调度的两种基本方式是__________________ 和_____________________ 。\n",
+    "source":"网络",
+    "answer":"解释\n",
+    "type":"fill_in_the_blank",
+    "q_number":435
+}

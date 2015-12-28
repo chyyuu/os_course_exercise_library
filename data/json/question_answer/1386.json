@@ -1,0 +1,11 @@
+{
+    "knowledge":[
+        "虚拟内存管理"
+    ],
+    "degree_of_difficulty":1,
+    "question":"mmap_list是什么列表？\n",
+    "source":"网络",
+    "answer":"\n",
+    "type":"question_answer",
+    "q_number":1386
+}

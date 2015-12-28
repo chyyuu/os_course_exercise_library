@@ -1,0 +1,11 @@
+{
+    "knowledge":[
+        "置换算法"
+    ],
+    "degree_of_difficulty":1,
+    "question":"页面置换算法分为__________________ ，______________________ 两大类。\n",
+    "source":"网络",
+    "answer":"解释\n",
+    "type":"fill_in_the_blank",
+    "q_number":368
+}
