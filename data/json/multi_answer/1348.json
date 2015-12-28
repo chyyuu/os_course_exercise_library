@@ -3,6 +3,7 @@
         "虚拟内存管理"
     ],
     "degree_of_difficulty":1,
+    "explain":"CD LRU和OPT属于一种栈算法\n",
     "question":"下面哪些页面淘汰算法不会产生Belady异常现象 s4\n",
     "source":"网络",
     "answer":"CD",

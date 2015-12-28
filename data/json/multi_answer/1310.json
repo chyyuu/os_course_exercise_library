@@ -3,6 +3,7 @@
         "物理内存管理"
     ],
     "degree_of_difficulty":1,
+    "explain":"AB\n",
     "question":"可有效应对大地址空间可采用的页表手段是() s7\n",
     "source":"网络",
     "answer":"AB",

@@ -3,6 +3,7 @@
         "物理内存管理:"
     ],
     "degree_of_difficulty":1,
+    "explain":"ABCD 都有\n",
     "question":"操作系统中可采用的内存管理方式包括()\n",
     "source":"网络",
     "answer":"ABCD",

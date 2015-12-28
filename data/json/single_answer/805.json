@@ -3,6 +3,7 @@
         "连续内存分配"
     ],
     "degree_of_difficulty":1,
+    "explain":"C\n",
     "question":"(20150309_操作系统原理习题集及答案_笔试必需品_doc)在最佳适应算法中是按﹎﹎﹎﹎顺序形成空闲分区链。\n",
     "source":"网络",
     "answer":"C",

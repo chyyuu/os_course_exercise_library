@@ -3,6 +3,7 @@
         "I/O子系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"C\n",
     "question":"通道是一种( )。\n",
     "source":"网络",
     "answer":"C",

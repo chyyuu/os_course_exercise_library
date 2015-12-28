@@ -3,6 +3,7 @@
         "同步互斥"
     ],
     "degree_of_difficulty":1,
+    "explain":"C\n",
     "question":"要想进程互斥地进入各自的同类资源的临界区，需要（） s3\n",
     "source":"网络",
     "answer":"C",

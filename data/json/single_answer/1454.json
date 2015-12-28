@@ -3,6 +3,7 @@
         "信号量与管程"
     ],
     "degree_of_difficulty":1,
+    "explain":"A\n",
     "question":"2元信号量可以初始化为（） s2\n",
     "source":"网络",
     "answer":"A",

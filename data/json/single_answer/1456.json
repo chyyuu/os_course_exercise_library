@@ -3,6 +3,7 @@
         "信号量与管程"
     ],
     "degree_of_difficulty":1,
+    "explain":"C\n",
     "question":"(2011年全国统考)有两个并发执行的进程P1和P2，共享初值为1的变量x。P1对x加1，P2对x减一。加1和减1操作的指令序列分别如下所示,两个操作完成后，x的值（）。 s2\n```\n加一操作            减一操作\nLoad R1,x          load R2,x\ninc R1             dec R2\nstore x,R1         store x,R2\n```\n",
     "source":"网络",
     "answer":"C",

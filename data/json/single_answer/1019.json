@@ -3,6 +3,7 @@
         "I/O子系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"D\n",
     "question":"执行一次磁盘输入输出操作所花费的时间包括\n",
     "source":"网络",
     "answer":"D",

@@ -3,6 +3,7 @@
         "文件系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"ABC 文件是共享资源，对于写操作需要互斥保护\n",
     "question":"关于文件缓存和打开文件的阐述正确的是（） s5\n",
     "source":"网络",
     "answer":"ABC",

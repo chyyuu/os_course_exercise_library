@@ -3,6 +3,7 @@
         "同步互斥"
     ],
     "degree_of_difficulty":1,
+    "explain":"C\n",
     "question":"一个正在访问临界资源的进程由于申请等待I/O操作而被中断时\n",
     "source":"网络",
     "answer":"C",

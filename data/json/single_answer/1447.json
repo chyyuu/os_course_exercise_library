@@ -3,6 +3,7 @@
         "同步互斥"
     ],
     "degree_of_difficulty":1,
+    "explain":"C\n",
     "question":"临界资源是什么类型的共享资源（） s2\n",
     "source":"网络",
     "answer":"C",

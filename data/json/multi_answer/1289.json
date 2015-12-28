@@ -3,6 +3,7 @@
         "物理内存管理:"
     ],
     "degree_of_difficulty":1,
+    "explain":"ABC 三种算法都会有外碎片\n",
     "question":"连续内存分配的算法中，会产生外碎片的是()\n",
     "source":"网络",
     "answer":"ABC",

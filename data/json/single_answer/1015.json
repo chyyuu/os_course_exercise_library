@@ -3,6 +3,7 @@
         "连续内存分配"
     ],
     "degree_of_difficulty":1,
+    "explain":"B\n",
     "question":"对于下列文件的物理结构，()只能采用顺序存取方式\n",
     "source":"网络",
     "answer":"B",

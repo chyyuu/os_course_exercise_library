@@ -3,6 +3,7 @@
         "I/O子系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"C\n",
     "question":"在现代操作系统中采用缓冲技术的主要目的是( )\n",
     "source":"网络",
     "answer":"C",

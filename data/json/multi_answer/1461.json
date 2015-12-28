@@ -3,6 +3,7 @@
         "lab7"
     ],
     "degree_of_difficulty":1,
+    "explain":"ABCD\n",
     "question":"关于ucore实现的管程和条件变量的阐述正确的是（） s4 管程和条件变量设计实现\n",
     "source":"网络",
     "answer":"ABCD",

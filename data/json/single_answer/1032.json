@@ -3,6 +3,7 @@
         "非连续内存分配"
     ],
     "degree_of_difficulty":1,
+    "explain":"D\n",
     "question":"下面是关于重定位的有关描述，其中错误的是\n",
     "source":"网络",
     "answer":"D",

@@ -3,6 +3,7 @@
         "缺页中断"
     ],
     "degree_of_difficulty":1,
+    "explain":"C\n",
     "question":"在虚拟分页存贮管理系统中，若进程访问的页面不在主存，且主存中没有可用的空闲块时，系统正确的处理顺序为( )。\n",
     "source":"网络",
     "answer":"C",

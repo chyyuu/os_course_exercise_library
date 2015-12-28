@@ -3,6 +3,7 @@
         "信号量"
     ],
     "degree_of_difficulty":1,
+    "explain":"A\n",
     "question":"(20150309_操作系统原理习题集及答案_笔试必需品_doc)设两个进程共用一个临界段的互斥信号量mutex，当mutex=-1时表示：﹎﹎﹎﹎。\n",
     "source":"网络",
     "answer":"A",

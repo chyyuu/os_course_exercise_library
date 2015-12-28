@@ -3,6 +3,7 @@
         "置换算法"
     ],
     "degree_of_difficulty":1,
+    "explain":"B\n",
     "question":"在请求分页管理中，若采用先进先出（FIFO）页面置换算法，可能会产生“Belady异常”，“Belady异常”指的是( )。\n",
     "source":"网络",
     "answer":"B",

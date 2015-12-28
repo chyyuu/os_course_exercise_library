@@ -3,6 +3,7 @@
         "I/O子系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"B\n",
     "question":"在设备管理中，虚拟设备的引入和实现是为了充分利用设备，提高系统效率，采用( )来模拟低速设备（输入机或打印机）的工作。\n",
     "source":"网络",
     "answer":"B",

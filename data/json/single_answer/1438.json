@@ -3,6 +3,7 @@
         "进程和线程管理"
     ],
     "degree_of_difficulty":1,
+    "explain":"C\n",
     "question":"在单处理器的多进程系统中，进程什么时候占用处理器和能占用多长时间，取决于（） s4\n",
     "source":"网络",
     "answer":"C",

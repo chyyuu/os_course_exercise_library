@@ -3,6 +3,7 @@
         "操作系统概述"
     ],
     "degree_of_difficulty":1,
+    "explain":"D\n",
     "question":"一般在哪种情况下发生从用户态到核心态的转换？\n",
     "source":"网络",
     "answer":"D",

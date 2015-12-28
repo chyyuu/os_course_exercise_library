@@ -3,6 +3,7 @@
         "中断、异常与系统调用"
     ],
     "degree_of_difficulty":1,
+    "explain":"ABCD 在ucore处理中，上述几个都是要设置好的。\n",
     "question":"为了让系统正确完成80386的中断处理过程中，操作系统需要正确设置()\n",
     "source":"网络",
     "answer":"ABCD",

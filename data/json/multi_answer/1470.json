@@ -3,6 +3,7 @@
         "文件系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"ABCD\n",
     "question":"打开文件时，文件系统要维护哪些信息（） s２\n",
     "source":"网络",
     "answer":"ABCD",

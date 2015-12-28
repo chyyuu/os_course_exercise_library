@@ -3,6 +3,7 @@
         "I/O子系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"C\n",
     "question":"实现CPU和外部设备并行工作的硬件支持是：( )。\n",
     "source":"网络",
     "answer":"C",

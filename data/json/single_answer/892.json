@@ -3,6 +3,7 @@
         "处理机调度"
     ],
     "degree_of_difficulty":1,
+    "explain":"C\n",
     "question":"下面有关选择进程调度算法的准则错误的是\n",
     "source":"网络",
     "answer":"C",

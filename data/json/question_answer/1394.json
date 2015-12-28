@@ -3,6 +3,7 @@
         "虚拟内存管理"
     ],
     "degree_of_difficulty":1,
+    "explain":"\n",
     "question":"struct rb_tree数据结构的原理是什么？在虚拟管理中如何用它的？\n",
     "source":"网络",
     "answer":"\n",

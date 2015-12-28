@@ -3,6 +3,7 @@
         "进程间通信"
     ],
     "degree_of_difficulty":1,
+    "explain":"ABCD\n",
     "question":"关于消息队列和共享内存的进程通信机制的阐述正确的是（） s7\n",
     "source":"网络",
     "answer":"AAAA",

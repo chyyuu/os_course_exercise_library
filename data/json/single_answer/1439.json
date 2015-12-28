@@ -3,6 +3,7 @@
         "进程和线程管理"
     ],
     "degree_of_difficulty":1,
+    "explain":"A\n",
     "question":"时间片轮转调度算法是为了（） s4\n",
     "source":"网络",
     "answer":"A",

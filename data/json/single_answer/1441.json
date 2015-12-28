@@ -3,6 +3,7 @@
         "进程和线程管理"
     ],
     "degree_of_difficulty":1,
+    "explain":"A\n",
     "question":"在基于优先级的可抢占的调度机制中，当系统强制使高优先级任务等待低优先级任务时，会发生（）s6\n",
     "source":"网络",
     "answer":"A",

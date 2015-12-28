@@ -3,6 +3,7 @@
         "I/O子系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"C\n",
     "question":"对磁盘进行移臂调度的目的是缩短( )。\n",
     "source":"网络",
     "answer":"C",

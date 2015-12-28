@@ -3,6 +3,7 @@
         "I/O子系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"ABC PIPE是用于进程间通信\n",
     "question":"关于CPU与设备的通信方式包括（） s2\n",
     "source":"网络",
     "answer":"ABC",

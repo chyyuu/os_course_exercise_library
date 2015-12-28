@@ -3,6 +3,7 @@
         "物理内存管理"
     ],
     "degree_of_difficulty":1,
+    "explain":"D CR3\n",
     "question":"页目录表的基址是保存在寄存器（） s3\n",
     "source":"网络",
     "answer":"D",

@@ -3,6 +3,7 @@
         "I/O子系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"ABCD\n",
     "question":"在设备管理子系统中，引入缓冲区的目的主要有() s5 缓冲区\n",
     "source":"网络",
     "answer":"ABCD",

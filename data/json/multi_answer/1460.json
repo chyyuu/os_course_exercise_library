@@ -3,6 +3,7 @@
         "lab7"
     ],
     "degree_of_difficulty":1,
+    "explain":"ABC 中断机制是支持信号量的，所以不选\n",
     "question":"ucore实现的信号量机制被用于（） s3 信号量设计与实现\n",
     "source":"网络",
     "answer":"ABC",

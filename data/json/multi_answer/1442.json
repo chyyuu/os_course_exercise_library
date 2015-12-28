@@ -3,6 +3,7 @@
         "进程和线程管理"
     ],
     "degree_of_difficulty":1,
+    "explain":"ABCDE\n",
     "question":"lab6的调度过程包括() s2\n",
     "source":"网络",
     "answer":"ABCDE",

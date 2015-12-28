@@ -3,6 +3,7 @@
         "虚拟内存管理"
     ],
     "degree_of_difficulty":1,
+    "explain":"A 页表项中的高24位\n",
     "question":"lab3中把扇区索引信息放在（）s5\n",
     "source":"网络",
     "answer":"A",

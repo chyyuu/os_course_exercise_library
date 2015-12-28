@@ -3,6 +3,7 @@
         "中断、异常与系统调用"
     ],
     "degree_of_difficulty":1,
+    "explain":"A\n",
     "question":"执行系统调用时可以被中断\n",
     "source":"网络",
     "answer":"A",

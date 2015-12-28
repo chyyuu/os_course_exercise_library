@@ -3,6 +3,7 @@
         "进程和线程管理"
     ],
     "degree_of_difficulty":1,
+    "explain":"ABC\n",
     "question":"lab5通过do_execve函数执行新的程序，为此需要完成（） s3\n",
     "source":"网络",
     "answer":"ABC",

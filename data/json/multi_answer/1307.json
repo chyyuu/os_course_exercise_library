@@ -3,6 +3,7 @@
         "物理内存管理"
     ],
     "degree_of_difficulty":1,
+    "explain":"ABCD\n",
     "question":"描述段管理机制正确的是() s2\n",
     "source":"网络",
     "answer":"ABCD",

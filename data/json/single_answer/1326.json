@@ -3,6 +3,7 @@
         "物理内存管理"
     ],
     "degree_of_difficulty":1,
+    "explain":"A 不可能取消段机制，只保留页机制\n",
     "question":"在启动页机制后，不可能进行的操作包括（） s3\n",
     "source":"网络",
     "answer":"A",

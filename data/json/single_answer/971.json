@@ -3,6 +3,7 @@
         "文件系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"C\n",
     "question":"用户请求使用一个已存在的文件时，其操作次序为( )\n",
     "source":"网络",
     "answer":"C",

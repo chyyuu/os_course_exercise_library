@@ -3,6 +3,7 @@
         "文件系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"C\n",
     "question":"在linux/Unix中对文件有条件的共享是指：( )\n",
     "source":"网络",
     "answer":"C",

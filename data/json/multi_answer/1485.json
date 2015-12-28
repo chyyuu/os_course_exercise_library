@@ -3,6 +3,7 @@
         "I/O子系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"AB DMA机制适合块设备，PIO机制适合简单，低速的字符设备等\n",
     "question":"关于IO数据传输的阐述正确的是（） s3\n",
     "source":"网络",
     "answer":"AB",

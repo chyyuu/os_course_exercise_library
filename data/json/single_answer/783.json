@@ -3,6 +3,7 @@
         "进程间通信"
     ],
     "degree_of_difficulty":1,
+    "explain":"B\n",
     "question":"(20150309_操作系统原理习题集及答案_笔试必需品_doc)在直接通信时，用send(N,M)原语发送信件，其中N表示﹎﹎﹎﹎。\n",
     "source":"网络",
     "answer":"B",

@@ -3,6 +3,7 @@
         "实验环境准备"
     ],
     "degree_of_difficulty":1,
+    "explain":"B 是参考了xv6, OS161, Linux的教学操作系统ucore OS\n",
     "question":"清华大学目前的操作系统实验中采用的OS对象是()\n",
     "source":"网络",
     "answer":"B",

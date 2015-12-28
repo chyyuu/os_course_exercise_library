@@ -3,6 +3,7 @@
         "文件系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"AB 后两种可实现，但现在还没实现\n",
     "question":"关于ucore实现的Virtual FS（简称VFS）阐述正确的是() s4 Virtual File System分析\n",
     "source":"网络",
     "answer":"AB",

@@ -3,6 +3,7 @@
         "物理内存管理"
     ],
     "degree_of_difficulty":1,
+    "explain":"ABCD 都对，还要设置更多的一些属性。\n",
     "question":"给定一个虚页地址和物理页地址，在建立二级页表并建立正确虚实映射关系的过程中，需要完成的事务包括() s4\n",
     "source":"网络",
     "answer":"ABCD",

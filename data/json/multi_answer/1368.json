@@ -3,6 +3,7 @@
         "虚拟内存管理"
     ],
     "degree_of_difficulty":1,
+    "explain":"ABCD\n",
     "question":"lab3中实现虚存管理的过程包括() s2\n",
     "source":"网络",
     "answer":"ABCD",

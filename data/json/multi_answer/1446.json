@@ -3,6 +3,7 @@
         "进程和线程管理"
     ],
     "degree_of_difficulty":1,
+    "explain":"D\n",
     "question":"lab6中的RR调度算法在( )时对当前进程的完成时间片的递减 s5\n",
     "source":"网络",
     "answer":"D",

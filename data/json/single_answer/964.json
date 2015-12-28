@@ -3,6 +3,7 @@
         "文件系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"B\n",
     "question":"在UNIX (linux) 操作系统中文件的绝对路径名首先是( )。\n",
     "source":"网络",
     "answer":"B",

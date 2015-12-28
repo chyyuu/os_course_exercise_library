@@ -3,6 +3,7 @@
         "I/O子系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"D\n",
     "question":"在操作系统中SPOOLing技术是一种并行机制，它可以使 ( )。\n",
     "source":"网络",
     "answer":"D",

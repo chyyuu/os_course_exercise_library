@@ -3,6 +3,7 @@
         "I/O子系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"A\n",
     "question":"在采用SPOOLing技术的系统中，用户作业的打印输出结果首先被送到( )。\n",
     "source":"网络",
     "answer":"A",

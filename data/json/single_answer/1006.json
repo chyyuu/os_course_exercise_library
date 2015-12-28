@@ -3,6 +3,7 @@
         "操作系统概述"
     ],
     "degree_of_difficulty":1,
+    "explain":"B\n",
     "question":"在分时系统中，时间片一定时， ，响应时间越长。\n",
     "source":"网络",
     "answer":"B",

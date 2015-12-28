@@ -3,6 +3,7 @@
         "操作系统概述"
     ],
     "degree_of_difficulty":1,
+    "explain":"D\n",
     "question":"如何从用户方式（用户态）转入特权方式（核心态）？\n",
     "source":"网络",
     "answer":"D",

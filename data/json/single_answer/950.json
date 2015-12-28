@@ -3,6 +3,7 @@
         "文件系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"C\n",
     "question":"文件信息的逻辑块号到磁盘物理块号的变换是由( )决定。\n",
     "source":"网络",
     "answer":"C",

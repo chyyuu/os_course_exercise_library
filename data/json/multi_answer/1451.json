@@ -3,6 +3,7 @@
         "同步互斥"
     ],
     "degree_of_difficulty":1,
+    "explain":"ABD\n",
     "question":"锁的实现方法有哪几种（） s4\n",
     "source":"网络",
     "answer":"ABD",

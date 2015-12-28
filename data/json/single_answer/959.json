@@ -3,6 +3,7 @@
         "文件系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"E\n",
     "question":"在文件系统中设置一张( )表，它是利用二进制的一位来表示磁盘中一个块的使用情况。\n",
     "source":"网络",
     "answer":"E",

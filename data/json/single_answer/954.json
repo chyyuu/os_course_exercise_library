@@ -3,6 +3,7 @@
         "文件系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"D\n",
     "question":"一个采用三级索引文件系统，存取一块盘块信息通常要访问()次磁盘。\n",
     "source":"网络",
     "answer":"D",

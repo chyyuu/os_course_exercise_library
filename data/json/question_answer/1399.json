@@ -3,6 +3,7 @@
         "虚拟内存管理"
     ],
     "degree_of_difficulty":1,
+    "explain":"\n",
     "question":"check_swap()做了些什么检查？\n",
     "source":"网络",
     "answer":"\n",

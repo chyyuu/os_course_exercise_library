@@ -3,6 +3,7 @@
         "文件系统"
     ],
     "degree_of_difficulty":1,
+    "explain":"AD 链式分配和索引分配不会产生外碎片\n",
     "question":"关于文件分配的阐述正确的是（） s6\n",
     "source":"网络",
     "answer":"AD",
