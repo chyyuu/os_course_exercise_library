@@ -47,6 +47,9 @@ class Json2mdParser:
                 jsonFile = codecs.open(filePath, encoding='utf-8')
                 try:
                     jsonData = eval(jsonFile.read())
+                    if (jsonData['status'] != 'ok'):
+                        print u'Warning: skip error json [filePath=%s]' % filePath
+                        continue
                     mdData = self.json2md(jsonData)
 
                     # 根据分类创建目录
