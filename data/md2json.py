@@ -85,14 +85,14 @@ class Md2jsonParser:
                     jsonStr = self.dict2json(tmpDict)
 
                     # 根据分类创建目录
-                    typeStr = self.TYPE_DEF[tmpDict['type']]
-                    dstPath = os.path.join(self.dstDir, typeStr, "%d.json" % tmpDict["q_number"])
-                    dstDir = os.path.dirname(dstPath)
+                    # typeStr = self.TYPE_DEF[tmpDict['type']]
+                    # dstPath = os.path.join(self.dstDir, typeStr, "%d.json" % tmpDict["q_number"])
+                    # dstDir = os.path.dirname(dstPath)
 
                     # 根据原来的目录格式创建新目录
-                    # dstPath = os.path.join(self.dstDir, filePath.strip(self.srcDir))
-                    # dstPath = os.path.splitext(dstPath)[0] + '.json'
-                    # dstDir = os.path.dirname(dstPath)
+                    dstPath = os.path.join(self.dstDir, filePath.strip(self.srcDir))
+                    dstPath = os.path.splitext(dstPath)[0] + '.json'
+                    dstDir = os.path.dirname(dstPath)
 
                     if not os.path.exists(dstDir):
                         os.makedirs(dstDir)

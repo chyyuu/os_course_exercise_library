@@ -50,14 +50,14 @@ class Json2mdParser:
                     mdData = self.json2md(jsonData)
 
                     # 根据分类创建目录
-                    typeStr = jsonData['type']
-                    dstPath = os.path.join(self.dstDir, typeStr, "%d.md" % jsonData["q_number"])
-                    dstDir = os.path.dirname(dstPath)
+                    # typeStr = jsonData['type']
+                    # dstPath = os.path.join(self.dstDir, typeStr, "%d.md" % jsonData["q_number"])
+                    # dstDir = os.path.dirname(dstPath)
 
                     # 根据原来的目录格式创建新目录
-                    # dstPath = os.path.join(self.dstDir, filePath.strip(self.srcDir))
-                    # dstPath = os.path.splitext(dstPath)[0] + '.md'
-                    # dstDir = os.path.dirname(dstPath)
+                    dstPath = os.path.join(self.dstDir, filePath.strip(self.srcDir))
+                    dstPath = os.path.splitext(dstPath)[0] + '.md'
+                    dstDir = os.path.dirname(dstPath)
 
                     if not os.path.exists(dstDir):
                         os.makedirs(dstDir)
