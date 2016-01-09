@@ -1,0 +1,19 @@
+{
+    "status":"error",
+    "knowledge":[
+        "文件系统"
+    ],
+    "degree_of_difficulty":1,
+    "explain":"解释\n",
+    "question":"索引式(随机)文件组织的一个主要优点是_____ 。\n",
+    "source":"网络",
+    "answer":"",
+    "type":"single_answer",
+    "options":[
+        "A.不需要链接指针",
+        "B.能实现物理块的动态分配",
+        "C.回收实现比较简单",
+        "D.用户存取方便"
+    ],
+    "q_number":307
+}

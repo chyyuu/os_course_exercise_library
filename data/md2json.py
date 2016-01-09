@@ -29,15 +29,25 @@ class ExerciseChecker:
 
     def checkJsonData(self, jsonData):
         typeStr = jsonData['type']
+        jsonData['status'] = 'ok'
         if typeStr in ['single_answer', 'true_false']:
-            if not len(jsonData['answer']) == 1 and not self.ignoreWarning:
-                raise InvailExerciseException('invail json [type=%s] [answer=%s]' % (typeStr, jsonData['answer'].strip()))
+            if not len(jsonData['answer']) == 1:
+                if self.ignoreWarning:
+                    jsonData['status'] = 'error'
+                else:
+                    raise InvailExerciseException('invail json [type=%s] [answer=%s]' % (typeStr, jsonData['answer'].strip()))
         elif typeStr == 'multi_answer':
-            if not len(jsonData['answer']) in range(1, 6) and not self.ignoreWarning:
-                raise InvailExerciseException('invail json [type=%s] [answer=%s]' % (typeStr, jsonData['answer'].strip()))
+            if not len(jsonData['answer']) in range(1, 6):
+                if self.ignoreWarning:
+                    jsonData['status'] = 'error'
+                else:
+                    raise InvailExerciseException('invail json [type=%s] [answer=%s]' % (typeStr, jsonData['answer'].strip()))
         elif typeStr in ['question_answer', 'fill_in_the_blank']:
             if jsonData['answer'].strip() == u'解释':  # 这是一个特殊处理，因为很多题目的答案只有"解释"
-                raise InvailExerciseException('invail json [type=%s] [answer=%s]' % (typeStr, jsonData['answer'].strip()))
+                if self.ignoreWarning:
+                    jsonData['status'] = 'error'
+                else:
+                    raise InvailExerciseException('invail json [type=%s] [answer=%s]' % (typeStr, jsonData['answer'].strip()))
         else:
             raise InvailExerciseException('invail json [type=%s]' % typeStr)
 
