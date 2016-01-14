@@ -1,0 +1,17 @@
+{
+    "status":"ok",
+    "knowledge":"英语",
+    "question":"",
+    "explain":"",
+    "degree_of_difficulty":1,
+    "source":"网络",
+    "answer":"B",
+    "type":"single_answer",
+    "options":[
+        "A.我是正确答案",
+        "B.A说谎",
+        "C.B不是正确答案",
+        "D.A和C说的都不对"
+    ],
+    "q_number":1488
+}
