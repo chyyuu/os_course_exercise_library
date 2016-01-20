@@ -1,1 +1,1 @@
-{"knowledge": ["text", "test", "test"], "degree_of_difficulty": "3", "explain": "memo", "question": "this is a test", "source": "network", "answer": "BCE", "type": "multi_answer", "options": ["A.a", "B.b", "C.c", "D.d", "E.e"], "q_number": 1489}
+{"q_number":1489,"type":"multi_answer","source":"network","question":"this is a test","explain":"memo","degree_of_difficulty":"3","knowledge":["text","test","test"],"answer":"BC","options":"A.a,B.b,C.c,D.d"}
