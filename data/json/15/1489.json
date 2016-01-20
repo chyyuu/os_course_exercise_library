@@ -1,1 +1,1 @@
-{"q_number":1489,"type":"multi_answer","source":"network","question":"this is a test","explain":"memo","degree_of_difficulty":"3","knowledge":["text","test","test"],"answer":"BC","options":"A.a,B.b,C.c,D.d"}
+{"q_number":1489,"type":"multi_answer","source":"network","question":"this is a test","explain":"test","degree_of_difficulty":"3","knowledge":["text","test","test"],"answer":"BC","options":"A.a,B.b,C.c,D.d"}
