@@ -1,11 +1,9 @@
 {
     "status":"ok",
-    "knowledge":[
-        "操作系统概述"
-    ],
-    "degree_of_difficulty":1,
-    "explain":"D\n",
+    "knowledge":"操作系统概述",
     "question":"计算机操作系统的功能是 。\n",
+    "explain":"D\n",
+    "degree_of_difficulty":1,
     "source":"网络",
     "answer":"D",
     "type":"single_answer",
