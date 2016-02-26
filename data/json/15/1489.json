@@ -1,0 +1,17 @@
+{
+    "status":"ok",
+    "knowledge":"test",
+    "question":"单选题",
+    "explain":"B",
+    "degree_of_difficulty":1,
+    "source":"网络",
+    "answer":"B",
+    "type":"single_answer",
+    "options":[
+        "A.1",
+        "B.2",
+        "C.3",
+        "D.4"
+    ],
+    "q_number":1489
+}
