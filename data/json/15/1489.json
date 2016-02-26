@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "status":"ok",
     "knowledge":"test",
@@ -15,3 +16,6 @@
     ],
     "q_number":1489
 }
+=======
+{"q_number":1489,"type":"multi_answer","source":"network","question":"this is a test","explain":"test test","degree_of_difficulty":"3","knowledge":["text","test","test"],"answer":"BC","options":"A.a,B.b,C.c,D.d"}
+>>>>>>> 9e36293944e505a8e3e0230a44d1611f096f25ff
