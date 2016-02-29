@@ -1,0 +1,19 @@
+{
+    "status":"ok",
+    "knowledge":[
+        "网络"
+    ],
+    "question":"这是正文",
+    "explain":"选D",
+    "degree_of_difficulty":1,
+    "source":"来源",
+    "answer":"",
+    "type":"single_answer",
+    "options":[
+        "A.选我",
+        "B.选我！",
+        "C.选我！！",
+        "D.选我！！！"
+    ],
+    "q_number":1496
+}
