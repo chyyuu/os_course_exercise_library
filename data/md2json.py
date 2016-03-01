@@ -43,7 +43,7 @@ class ExerciseChecker:
                 else:
                     raise InvailExerciseException('invail json [type=%s] [answer=%s]' % (typeStr, jsonData['answer'].strip()))
         elif typeStr in ['question_answer', 'fill_in_the_blank']:
-            if jsonData['answer'].strip() == u'解释':  # 这是一个特殊处理，因为很多题目的答案只有"解释"
+            if jsonData['answer'].strip() == u'解释' or not jsonData['answer'].strip():  # 这是一个特殊处理，因为很多题目的答案只有"解释"
                 if self.ignoreWarning:
                     jsonData['status'] = 'error'
                 else:

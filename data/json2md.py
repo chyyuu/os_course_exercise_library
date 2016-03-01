@@ -7,6 +7,7 @@ import os
 import sys
 import json
 import re
+import argparse
 
 
 def debug_print(dictObj):
@@ -36,6 +37,21 @@ class Json2mdParser:
             output.write(data)
         finally:
             output.close()
+
+    def parser(self, src, dst):
+        jsonFile = codecs.open(src, encoding='utf-8')
+        try:
+            jsonData = eval(jsonFile.read())
+            if (jsonData['status'] != 'ok'):
+                raise Exception(u'unexcepted status \'%s\', status should be \'ok\'' % jsonData['status'])
+
+                return
+            mdData = self.json2md(jsonData)
+            self.saveData(dst, mdData)
+        except Exception as e:
+            print u'Error: %s [filePath=%s]' % (e, src)
+        finally:
+            jsonFile.close()
 
     def doParser(self):
         for parent, dirnames, filenames in os.walk(self.srcDir):
@@ -101,5 +117,14 @@ class Json2mdParser:
 
 
 if __name__ == '__main__':
-    parser = Json2mdParser(sys.argv[1], sys.argv[2])
-    parser.doParser()
+    argParser = argparse.ArgumentParser(description='convert exercise file from .json to .md')
+    argParser.add_argument('-f', action='store_true', help='convert file')
+    argParser.add_argument('src', help='.json file or drectory')
+    argParser.add_argument('dst', help='.md file or drectory')
+    args = argParser.parse_args()
+    if args.f is None:
+        parser = Json2mdParser(args.src, args.dst)
+        parser.doParser()
+    else:
+        parser = Json2mdParser(None, None)
+        parser.parser(args.src, args.dst)
