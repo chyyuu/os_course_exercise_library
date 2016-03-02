@@ -1,0 +1,19 @@
+{
+    "status":"ok",
+    "knowledge":[
+        "sdf"
+    ],
+    "question":"sdf",
+    "explain":"sdf",
+    "degree_of_difficulty":1,
+    "source":"sd",
+    "answer":"D",
+    "type":"single_answer",
+    "options":[
+        "A.sdf",
+        "B.sd",
+        "C.sdf",
+        "D.sdf"
+    ],
+    "q_number":1488
+}
