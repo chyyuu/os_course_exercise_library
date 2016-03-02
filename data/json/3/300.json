@@ -1,13 +1,13 @@
 {
-    "status":"error",
+    "status":"ok",
     "knowledge":[
         "信号量"
     ],
-    "degree_of_difficulty":1,
-    "explain":"解释\n",
     "question":"PV操作是在（　　　）上的操作。\n",
+    "explain":"PV操作是对信号量的操作",
+    "degree_of_difficulty":1,
     "source":"网络",
-    "answer":"",
+    "answer":"D",
     "type":"single_answer",
     "options":[
         "A.临界区",
