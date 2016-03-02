@@ -1,12 +1,12 @@
 {
     "status":"ok",
     "knowledge":[
-        "sdf"
+        "知识点"
     ],
-    "question":"sdf",
+    "question":"这里时题干",
     "explain":"sdf",
     "degree_of_difficulty":1,
-    "source":"sd",
+    "source":"网络",
     "answer":"D",
     "type":"single_answer",
     "options":[
