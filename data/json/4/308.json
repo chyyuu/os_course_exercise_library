@@ -1,13 +1,13 @@
 {
-    "status":"error",
+    "status":"ok",
     "knowledge":[
         "文件系统"
     ],
-    "degree_of_difficulty":1,
-    "explain":"解释\n",
     "question":"文件目录的主要作用是_____ 。\n",
+    "explain":"解释 A",
+    "degree_of_difficulty":1,
     "source":"网络",
-    "answer":"",
+    "answer":"A",
     "type":"single_answer",
     "options":[
         "A.按名存取",
