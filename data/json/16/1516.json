@@ -5,7 +5,7 @@
     ],
     "question":"如果用户态进程一直执行死循环，则操作系统将一直无法执行，从而造成系统“假死”。",
     "explain":"暂无",
-    "degree_of_difficulty":-54,
+    "degree_of_difficulty":1,
     "source":"2016春期中",
     "answer":"B",
     "type":"true_false",
