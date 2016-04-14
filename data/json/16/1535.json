@@ -1,0 +1,13 @@
+{
+    "status":"ok",
+    "knowledge":[
+        ""
+    ],
+    "question":"2）请给出下面程序在命令行分别为“fork 1”和“fork 2”时，输出结果有多少行？其中以“Stage A: i=0”、“Stage A: i=1”、“Stage B: i=0”和“Stage B: i=1”为开头的输出数分别是多少行？建议给出计算过程。\n```\n-------------fork.cpp------------------\n#include <iostream>\n#include <cstdio>\n#include <cstring>\n#include <cstdlib>\n#include <unistd.h>\n#include <stdlib.h>\nusing namespace std;\n\nint LOOP;\n\nint main(int argc,char *argv[])\n{\n    if (argc != 2) {\n        fprintf(stderr, \"Command line error.\\n\");\n        exit(-1);\n    }\n    \n    LOOP = atoi(argv[1]);\n    \n     pid_t  pid;\n      int  i;\n\n      for  (i=0;  i<LOOP;  i++)\n      {\n          /* fork  another  process  */\n          pid = fork();\n          if  (pid < 0) { /*error  occurred  */\n              fprintf(stderr, \"Fork Failed\");\n              exit(-1);\n          }\n          else if (pid == 0) { /* child process */\n              fprintf(stdout,  \"Stage A: i=%d,  pid=%d,  parent  pid=%d\\n\",i,\n                      getpid() ,getppid());\n          }\n\n\n          /* fork  another  process  */\n          pid = fork();\n          if  (pid < 0) { /*error  occurred  */\n              fprintf(stderr, \"Fork Failed\");\n              exit(-1);\n          }\n          else if (pid == 0) { /* child process */\n              fprintf(stdout,  \"Stage B: i=%d,  pid=%d,  parent  pid=%d\\n\",i,\n                      getpid() ,getppid());\n          }\n\n      }\n      wait(NULL);\n      exit(0);\n} \n---------------------------------------\n```",
+    "explain":"暂无",
+    "degree_of_difficulty":1,
+    "source":"2016春期中",
+    "answer":"暂无",
+    "type":"question_answer",
+    "q_number":1535
+}
