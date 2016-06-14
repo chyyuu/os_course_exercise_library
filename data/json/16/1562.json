@@ -3,7 +3,7 @@
     "knowledge":[
         ""
     ],
-    "question":"(接上题) 2) 当前时刻，系统是处于安全状态。",
+    "question":"(接上题) 当前时刻，系统是处于安全状态。",
     "explain":"当前时刻，系统是处于安全状态。（4分）\n可能的资源分配序列：P0、P2、P1、P3、P4\n",
     "degree_of_difficulty":1,
     "source":"2016期末",
