@@ -3,11 +3,11 @@
     "knowledge":[
         ""
     ],
-    "question":"",
+    "question":"进程在创建用户进程时，需要为用户进程设置用户态的栈空间。",
     "explain":"进程在创建用户进程时，需要为用户进程设置用户态的栈空间。",
     "degree_of_difficulty":null,
     "source":"",
-    "answer":"B",
+    "answer":"A",
     "type":"true_false",
     "options":[
         "A.对",
